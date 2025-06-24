@@ -1,5 +1,5 @@
 import React from 'react';
-import { useController, Control, useFormContext } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 import { cn } from '@/lib/utils';
 
 type Option = {
