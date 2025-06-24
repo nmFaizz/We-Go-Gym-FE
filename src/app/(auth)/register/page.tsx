@@ -33,7 +33,6 @@ export default function RegisterPage() {
     })
     const { 
         handleSubmit, 
-        control, 
         watch, 
     } = methods
     const password = watch("password")
@@ -134,7 +133,7 @@ export default function RegisterPage() {
                                     ]}
                                     direction="row"
                                 />
-                                
+
                                 <Input 
                                     id="password"
                                     type="password"
