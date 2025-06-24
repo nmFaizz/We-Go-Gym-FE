@@ -5,28 +5,38 @@ import Link from "next/link"
 import { useForm, FormProvider } from "react-hook-form"
 
 import Input from "@/components/forms/Input"
+import Image from "next/image"
 
 type LoginFormValues = {
-    username: string
+    email: string,
+    password: string
 }
 
 export default function LoginPage() {
-    const methods = useForm({
+    const methods = useForm<LoginFormValues>({
         defaultValues: {
-            username: ""
+            email: "",
+            password: ""
         }
     })
 
     return (
-        <MainLayout withNavbar={false}>
-            <div className="flex h-screen">
-                <div className="flex-1 bg-slate-700 rounded-xl mx-4">
-                    
+        <MainLayout withNavbar={false} withMarginY={false}>
+            <div className="flex max-h-screen overflow-hidden">
+                <div className="flex-1  rounded-xl lg:block hidden">
+                    <Image 
+                        src="/assets/gymbro.png"
+                        alt="Gym Bro"
+                        width={647}
+                        height={950}
+                    />
                 </div>
 
-                <div className="flex-1 flex flex-col justify-center">
+                <div className="relative flex-1 flex flex-col justify-center">
+                    <div className="absolute top-10 right-10 w-40 h-40 bg-primary blur-[120px] opacity-70 rounded-full z-20 pointer-events-none" />
+                    <div className="absolute bottom-0 left-20 w-40 h-40 bg-primary blur-[120px] opacity-70 rounded-full z-20 pointer-events-none" />
                     <FormProvider {...methods}>
-                        <form className="mx-4">
+                        <form className="mx-5">
                             <h1 className="text-primary text-4xl font-bold">
                                 LOGIN
                             </h1>
@@ -35,7 +45,7 @@ export default function LoginPage() {
                             <div className="space-y-5 mt-16">
                                 <Input 
                                     id="email"
-                                    placeholder="Masukkan Username"
+                                    placeholder="Masukkan Email"
                                     label="Email"
                                 />
 
