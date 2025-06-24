@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useForm, FormProvider } from "react-hook-form"
 
 import Input from "@/components/forms/Input"
+import Image from "next/image"
 
 type LoginFormValues = {
     email: string,
@@ -21,9 +22,14 @@ export default function LoginPage() {
 
     return (
         <MainLayout withNavbar={false} withMarginY={false}>
-            <div className="flex min-h-screen">
-                <div className="flex-1 bg-slate-700 rounded-xl lg:block hidden">
-                    
+            <div className="flex max-h-screen overflow-hidden">
+                <div className="flex-1  rounded-xl lg:block hidden">
+                    <Image 
+                        src="/assets/gymbro.png"
+                        alt="Gym Bro"
+                        width={647}
+                        height={950}
+                    />
                 </div>
 
                 <div className="relative flex-1 flex flex-col justify-center">

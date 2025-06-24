@@ -9,6 +9,7 @@ import { RadioGroup } from "@/components/forms/Radiobutton"
 import api from "@/lib/api"
 import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
+import Image from "next/image"
 
 type RegisterFormValue = {
     username: string
@@ -56,7 +57,14 @@ export default function RegisterPage() {
         <MainLayout withNavbar={false} withMarginY={false}>
             <div className="flex min-h-screen">
                 {/* Left Side (Fixed) */}
-                <div className="hidden lg:block fixed top-0 left-0 h-full w-1/2 bg-slate-700 rounded-r-xl p-4 z-0" />
+                <div className="hidden lg:block fixed top-0 left-0 h-full w-1/2 rounded-r-xl p-4 z-0">
+                    <Image 
+                        src="/assets/gymbro.png"
+                        alt="Gym Bro"
+                        width={647}
+                        height={950}
+                    />
+                </div>
 
                 {/* Right Side (Form Content) */}
                 <div className="relative flex flex-1 lg:ml-[50%] items-center justify-center p-6 overflow-y-auto w-full">
