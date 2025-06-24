@@ -5,9 +5,6 @@ import { cn } from "@/lib/utils"
 export type InputProps = {
 	id: string
 	label?: string
-	labelClassName?: string
-	helperText?: React.ReactNode
-	helperTextClassName?: string
 	hideError?: boolean
 	validation?: RegisterOptions
 } & React.ComponentPropsWithoutRef<"input">
@@ -15,14 +12,11 @@ export type InputProps = {
 export default function Input({
 	id,
 	label,
-	helperText,
 	hideError = false,
 	validation,
 	className,
 	type = "text",
 	readOnly = false,
-	labelClassName,
-	helperTextClassName,
 	...rest
 }: InputProps) {
 	const {

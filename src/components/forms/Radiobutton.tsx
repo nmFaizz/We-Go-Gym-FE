@@ -10,7 +10,7 @@ type Option = {
 type RadioGroupProps = {
   name: string;
   label?: string;
-  control: Control<any>;
+  control: Control;
   options: Option[];
   direction?: 'row' | 'column';
   className?: string;
