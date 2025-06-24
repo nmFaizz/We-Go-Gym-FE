@@ -36,7 +36,6 @@ export default function Input({
 
 	return (
 		<div className="w-full space-y-2">
-
             {label && (
                 <label 
                     htmlFor={id}
@@ -45,7 +44,7 @@ export default function Input({
                     {label}
                 </label>
             )}
-			<div className="relative flex w-full gap-0">
+			<div className="relative flex w-full gap-0 mt-2">
 				<div className={cn("relative w-full")}>
 					<input
 						{...register(id, validation)}
@@ -61,7 +60,7 @@ export default function Input({
 							"ring-1 ring-light",
 							"placeholder:text-gray-500",
 							"focus:outline-none focus:ring-primary",
-							"bg-dark text-black",
+							"bg-dark text-white",
 							readOnly && "cursor-not-allowed",
 							className,
 						)}
@@ -83,6 +82,17 @@ export default function Input({
 					)}
 				</div>
 			</div>
+			{error && !hideError && (
+				<p
+					className={cn(
+						"text-red-500 text-sm",
+						"mt-1 mr-2",
+						"font-regular",
+					)}
+				>
+					{error.message}
+				</p>
+			)}
 		</div>
 	)
 }

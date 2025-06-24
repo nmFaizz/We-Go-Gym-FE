@@ -7,26 +7,28 @@ import { useForm, FormProvider } from "react-hook-form"
 import Input from "@/components/forms/Input"
 
 type LoginFormValues = {
-    username: string
+    email: string,
+    password: string
 }
 
 export default function LoginPage() {
-    const methods = useForm({
+    const methods = useForm<LoginFormValues>({
         defaultValues: {
-            username: ""
+            email: "",
+            password: ""
         }
     })
 
     return (
-        <MainLayout withNavbar={false}>
-            <div className="flex h-screen">
-                <div className="flex-1 bg-slate-700 rounded-xl mx-4">
+        <MainLayout withNavbar={false} withMarginY={false}>
+            <div className="flex min-h-screen">
+                <div className="flex-1 bg-slate-700 rounded-xl lg:block hidden">
                     
                 </div>
 
                 <div className="flex-1 flex flex-col justify-center">
                     <FormProvider {...methods}>
-                        <form className="mx-4">
+                        <form className="mx-5">
                             <h1 className="text-primary text-4xl font-bold">
                                 LOGIN
                             </h1>
@@ -35,7 +37,7 @@ export default function LoginPage() {
                             <div className="space-y-5 mt-16">
                                 <Input 
                                     id="email"
-                                    placeholder="Masukkan Username"
+                                    placeholder="Masukkan Email"
                                     label="Email"
                                 />
 

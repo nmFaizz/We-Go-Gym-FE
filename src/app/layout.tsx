@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -29,7 +31,10 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${mont.variable} antialiased bg-dark text-light`}
       >
-        {children}
+        <ReactQueryProvider>
+          <Toaster />
+          {children}
+        </ReactQueryProvider>
       </body>
     </html>
   );
