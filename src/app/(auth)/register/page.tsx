@@ -59,7 +59,9 @@ export default function RegisterPage() {
                 <div className="hidden lg:block fixed top-0 left-0 h-full w-1/2 bg-slate-700 rounded-r-xl p-4 z-0" />
 
                 {/* Right Side (Form Content) */}
-                <div className="flex flex-1 lg:ml-[50%] items-center justify-center p-6 overflow-y-auto w-full">
+                <div className="relative flex flex-1 lg:ml-[50%] items-center justify-center p-6 overflow-y-auto w-full">
+                    <div className="absolute top-10 right-10 w-40 h-40 bg-primary blur-[120px] opacity-70 rounded-full z-20 pointer-events-none" />
+                    <div className="absolute bottom-10 left-50 w-40 h-40 bg-primary blur-[120px] opacity-70 rounded-full z-20 pointer-events-none" />
                     <FormProvider {...methods}>
                         <form
                             onSubmit={handleSubmit(onSubmit)}

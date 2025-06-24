@@ -26,7 +26,9 @@ export default function LoginPage() {
                     
                 </div>
 
-                <div className="flex-1 flex flex-col justify-center">
+                <div className="relative flex-1 flex flex-col justify-center">
+                    <div className="absolute top-10 right-10 w-40 h-40 bg-primary blur-[120px] opacity-70 rounded-full z-20 pointer-events-none" />
+                    <div className="absolute bottom-0 left-20 w-40 h-40 bg-primary blur-[120px] opacity-70 rounded-full z-20 pointer-events-none" />
                     <FormProvider {...methods}>
                         <form className="mx-5">
                             <h1 className="text-primary text-4xl font-bold">
