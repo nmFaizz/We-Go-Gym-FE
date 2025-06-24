@@ -1,6 +1,7 @@
 import MainLayout from "@/layouts/MainLayout";
 import Button from "@/components/Button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,9 +17,11 @@ export default function Home() {
           </h1>
           <p className="">Your Future Dream Body Starts Now.</p>
 
-          <Button variant="primary" className="mt-6">
-            Join Us
-          </Button>
+          <Link href="/membership-plan">
+            <Button variant="primary" className="mt-6">
+              Join Us
+            </Button>
+          </Link>
         </div>
 
         <div>

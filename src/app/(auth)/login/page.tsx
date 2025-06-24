@@ -6,6 +6,10 @@ import { useForm, FormProvider } from "react-hook-form"
 
 import Input from "@/components/forms/Input"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { useMutation } from "@tanstack/react-query"
+import toast from "react-hot-toast"
+import api from "@/lib/api"
 
 type LoginFormValues = {
     email: string,
@@ -19,10 +23,30 @@ export default function LoginPage() {
             password: ""
         }
     })
+    const { handleSubmit } = methods
+
+    const router = useRouter()
+
+    const { mutate } = useMutation({
+        mutationFn: async (data: LoginFormValues) => {
+            return await api.post("/api/user/login", data)
+        },
+        onSuccess: () => {
+            toast.success("Login Berhasil")
+            router.push("/dashboard")
+        },
+        onError: (error) => {
+            toast.error(error.message)
+        }
+    })
+
+    const onSubmit = (data: LoginFormValues) => {
+        mutate(data)
+    }
 
     return (
         <MainLayout withNavbar={false} withMarginY={false}>
-            <div className="flex max-h-screen overflow-hidden">
+            <div className="flex h-screen md:ax-h-screen overflow-hidden">
                 <div className="flex-1  rounded-xl lg:block hidden">
                     <Image 
                         src="/assets/gymbro.png"
@@ -36,7 +60,7 @@ export default function LoginPage() {
                     <div className="absolute top-10 right-10 w-40 h-40 bg-primary blur-[120px] opacity-70 rounded-full z-20 pointer-events-none" />
                     <div className="absolute bottom-0 left-20 w-40 h-40 bg-primary blur-[120px] opacity-70 rounded-full z-20 pointer-events-none" />
                     <FormProvider {...methods}>
-                        <form className="mx-5">
+                        <form className="mx-5" onSubmit={handleSubmit(onSubmit)}>
                             <h1 className="text-primary text-4xl font-bold">
                                 LOGIN
                             </h1>
@@ -57,7 +81,10 @@ export default function LoginPage() {
                                 />
                             </div>
 
-                            <Button className="w-full flex justify-center mt-12">
+                            <Button 
+                                type="submit"
+                                className="w-full flex justify-center mt-12"
+                            >
                                 Masuk
                             </Button>
 

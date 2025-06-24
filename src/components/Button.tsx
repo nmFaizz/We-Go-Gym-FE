@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
-type ButtonVariant = 'primary' | 'dark' | 'danger';
+type ButtonVariant = 'primary' | 'dark' | 'danger' | 'outline';
 type ButtonSize = 'sm' | 'base';
 
 type ButtonProps = {
@@ -64,6 +64,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 'active:bg-dark-700',
                 'disabled:bg-dark-700',
                 'text-primary'
+              ],
+              variant === 'outline' && [
+                'bg-transparent text-primary',
+                'border border-primary',
+                'hover:bg-primary/50 hover:text-white',
               ]
           ],
           //#endregion  //*======== Variants ===========

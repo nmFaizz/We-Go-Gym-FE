@@ -4,15 +4,25 @@ import UserProfile from "@/components/UserProfile";
 import MainLayout from "@/layouts/MainLayout";
 import MembershipPlanCard from "./components/membership-plan-card";
 import { useGetMembershipPlan } from "./hooks/useGetMembershipPlan";
+import Link from "next/link";
+import { HomeIcon } from "lucide-react";
 
 function MembershipPlan() {
   const { data: memberPlans } = useGetMembershipPlan();
 
   return (
-    <MainLayout withNavbar={false} containerSize="full" withMarginY={false}>
+    <MainLayout 
+      withNavbar={false} 
+      containerSize="full" 
+      withMarginY={false}
+    >
       <div className='bg-[url("/assets/bg-membership-plan.png")] min-h-screen bg-cover bg-center px-10 font-poppins'>
-        <div className="flex justify-end">
-          <UserProfile />
+        <div className="w-full flex justify-between items-center mb-12">
+            <Link href="/">
+                <HomeIcon size={40} className="text-primary" />
+            </Link>
+
+            <UserProfile />
         </div>
         <h1 className="text-5xl text-primary text-center font-bold uppercase">
           Choose Your Membership

@@ -10,6 +10,7 @@ import api from "@/lib/api"
 import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 type RegisterFormValue = {
     username: string
@@ -37,12 +38,15 @@ export default function RegisterPage() {
     } = methods
     const password = watch("password")
 
+    const router = useRouter()
+
     const { mutate } = useMutation({
         mutationFn: async (data: RegisterFormValue) => {
             return await api.post("/api/user/register", data)
         },
         onSuccess: () => {
             toast.success("Registration successful")
+            router.push("/login")
         },
         onError: (error) => {
             toast.error(error.message)
