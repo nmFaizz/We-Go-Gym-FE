@@ -127,7 +127,6 @@ export default function RegisterPage() {
 
                                 <RadioGroup 
                                     name="gender"
-                                    control={control}
                                     label="Jenis Kelamin"
                                     options={[
                                         { label: "Laki-laki", value: "laki-laki" },
@@ -135,6 +134,7 @@ export default function RegisterPage() {
                                     ]}
                                     direction="row"
                                 />
+                                
                                 <Input 
                                     id="password"
                                     type="password"
