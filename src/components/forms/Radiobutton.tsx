@@ -1,5 +1,5 @@
 import React from 'react';
-import { useController, Control } from 'react-hook-form';
+import { useController, Control, useFormContext } from 'react-hook-form';
 import { cn } from '@/lib/utils';
 
 type Option = {
@@ -10,7 +10,6 @@ type Option = {
 type RadioGroupProps = {
   name: string;
   label?: string;
-  control: Control;
   options: Option[];
   direction?: 'row' | 'column';
   className?: string;
@@ -20,7 +19,6 @@ type RadioGroupProps = {
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
   name,
-  control,
   label,
   options,
   direction = 'column',
@@ -28,6 +26,8 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   labelClassName,
   inputClassName,
 }) => {
+  const { control } = useFormContext();
+    
   const {
     field: { onChange, value },
   } = useController({
