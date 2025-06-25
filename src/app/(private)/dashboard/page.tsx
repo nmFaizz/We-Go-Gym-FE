@@ -22,15 +22,17 @@ export default function DashboardPage() {
                 <UserProfile />
             </div>
             <div>
-                <Button 
-                    leftIcon={History}
-                    variant="outline"
-                >
-                    View History
-                </Button>
+                <Link href="/history">
+                    <Button 
+                        leftIcon={History}
+                        variant="outline"
+                    >
+                        View History
+                    </Button>
+                </Link>
 
                 <div className="bg-primary rounded-xl mt-8 p-8 md:p-12 text-dark">
-                    <div className="flex items-center gap-5">
+                    <div className="flex justify-center md:justify-start md:items-center gap-5 md:flex-row flex-col">
                         <Image 
                             src="/logo.png"
                             alt="logo"
@@ -38,12 +40,12 @@ export default function DashboardPage() {
                             height={37}
                         />
 
-                        <h2 className="text-5xl font-semibold text-dark">
+                        <h2 className="text-3xl md:text-5xl font-semibold text-dark">
                             Membership Card
                         </h2>
                     </div>
 
-                    <figure className="w-[296px] h-[296px] bg-dark my-12">
+                    <figure className="w-[200px] h-[200px] md:w-[296px] md:h-[296px] bg-dark my-12">
                         {/* <Image 
                             src="/assets/membership-card.png"
                             alt="Membership Card"
