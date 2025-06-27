@@ -26,3 +26,7 @@
 .center-full {
   @apply mx-auto;
 }
+
+html {
+  @apply scroll-smooth;
+}

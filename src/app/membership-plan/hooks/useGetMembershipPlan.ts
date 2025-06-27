@@ -16,10 +16,11 @@ export const useGetMembershipPlan = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["membershipPlan"],
     queryFn: async () => {
-      const response = await api.get<GetMembershipResponse>("/api/membership/");
+      const response = await api.get<GetMembershipResponse>("/membership");
 
       return response.data.data
     },
+    refetchOnWindowFocus: false,
   });
 
   return {data, isLoading}

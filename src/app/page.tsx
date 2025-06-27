@@ -43,7 +43,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative bg-primary z-10 text-dark rounded-xl md:rounded-[100px] py-16 md:py-32"> 
+      <section id="about-us" className="relative bg-primary z-10 text-dark rounded-xl md:rounded-[100px] py-16 md:py-32"> 
         <div className="center-xl">
           <h1 className="text-3xl md:text-5xl font-bold">About Us</h1>
 

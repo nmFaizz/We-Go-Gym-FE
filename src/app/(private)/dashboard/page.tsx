@@ -1,3 +1,4 @@
+"use client";
 import Button from "@/components/Button";
 import MainLayout from "@/layouts/MainLayout";
 import { History, HomeIcon } from "lucide-react";
@@ -5,8 +6,25 @@ import Image from "next/image";
 import TrainerList from "@/app/(private)/dashboard/components/TrainerList";
 import UserProfile from "@/components/UserProfile";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import api from "@/lib/api";
+import useUserQuery from "@/hooks/useUserQuery";
 
 export default function DashboardPage() {
+    const { data: qrImg } = useQuery<string>({
+        queryKey: ["qr-code"],
+        queryFn: async () => {
+            const res = await api.get("/user/generate-qr", {
+            responseType: "blob",
+            });
+
+            return URL.createObjectURL(res.data); // ← Convert blob ke URL untuk <img>
+        },
+        refetchOnWindowFocus: false,
+    });
+
+    const { data: user } = useUserQuery();
+
     return (
         <MainLayout 
             withNavbar={false} 
@@ -19,7 +37,7 @@ export default function DashboardPage() {
                     <HomeIcon size={40} className="text-primary" />
                 </Link>
 
-                <UserProfile />
+                <UserProfile username={user?.data.username} />
             </div>
             <div>
                 <Link href="/history">
@@ -45,26 +63,51 @@ export default function DashboardPage() {
                         </h2>
                     </div>
 
-                    <figure className="w-[200px] h-[200px] md:w-[296px] md:h-[296px] bg-dark my-12">
-                        {/* <Image 
-                            src="/assets/membership-card.png"
-                            alt="Membership Card"
-                            width={296}
-                            height={296}
-                            className="w-full h-full object-cover"
-                        /> */}
+                    <figure className="relative w-[200px] h-[200px] md:w-[296px] md:h-[296px] bg-dark my-12">
+                        {qrImg && (
+                            <Image 
+                            src={qrImg}
+                            alt="Membership QR Code"
+                            fill
+                            unoptimized
+                            />
+                        )}
                     </figure>
 
                     <div className="w-full border border-dark my-5"></div>
 
                     <div className="w-full flex justify-end">
-                        <div>
-                            <p className="text-2xl text-end">Available Until:</p>
-                            <h1 className="text-4xl text-end font-bold">11-11-2025 [23:59]</h1>
-                        </div>
+
+                        {user?.data.user_membership.id ? (
+                            <div>
+                                <p className="text-2xl text-end">Available Until:</p>
+                                <h1 className="text-4xl text-end font-bold">11-11-2025 [23:59]</h1>
+                            </div>
+                        ) : (
+                            <div className="bg-dark text-primary rounded-lg p-5 text-center">
+                                <p className="text-lg md:text-2xl font-semibold">
+                                    BELUM MEMBERSHIP
+                                </p>
+                            </div>
+                        )}
+                        
                     </div>
                 </div>
             </div>
+            
+            {!user?.data.user_membership.id && (
+                <section className="flex flex-col items-center mt-24 md:mt-32">
+                    <h1 className="text-3xl md:text-5xl font-bold text-primary text-center mb-12">
+                        Become a member today!
+                    </h1>
+                    
+                    <Link href="/membership-plan">
+                        <Button variant="primary" className="flex items-center justify-center">
+                            View Plans
+                        </Button>
+                    </Link>
+                </section>
+            )}
             
             <section className="mt-24 md:mt-32">
                 <h1 className="text-3xl md:text-5xl font-bold text-primary text-center mb-12">

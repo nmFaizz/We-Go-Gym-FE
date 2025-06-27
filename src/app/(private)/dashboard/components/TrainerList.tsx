@@ -1,4 +1,5 @@
 import Button from "@/components/Button"
+import { formatRupiah } from "@/lib/format"
 
 const trainerList = [
     {
@@ -36,13 +37,13 @@ export default function TrainerList() {
                         Sesi {trainer.sesi}
                     </h3>
                     <p className="italic text-2xl mt-5">
-                        Rp {trainer.harga.total.toLocaleString()}
+                        Rp {formatRupiah(trainer.harga.total)}
                     </p>
 
                     <div className="w-full border border-light my-5"></div>
 
                     <p className="text-xl md:text-3xl">
-                        Rp {trainer.harga.perSesi.toLocaleString()} /sesi
+                        Rp {formatRupiah(trainer.harga.perSesi)} /sesi
                     </p>
 
                     <Button variant="primary" className="mt-8 w-full flex items-center justify-center">

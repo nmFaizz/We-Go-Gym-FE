@@ -1,21 +1,21 @@
-
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: isProd 
+    ? process.env.NEXT_PUBLIC_API_URL 
+    : '/api',                          
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 });
 
 api.interceptors.request.use(
-  (config) => {
-    return config;
-  },
-  (error: AxiosError) => {
-    return Promise.reject(error);
-  }
+  (config) => config,
+  (error: AxiosError) => Promise.reject(error)
 );
 
 api.interceptors.response.use(

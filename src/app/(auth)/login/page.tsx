@@ -10,6 +10,9 @@ import { useRouter } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import api from "@/lib/api"
+import { setId } from "@/lib/cookie"
+import { ApiResponse } from "@/types/api"
+import { UserLoginResponse } from "@/lib/auth"
 
 type LoginFormValues = {
     email: string,
@@ -27,11 +30,17 @@ export default function LoginPage() {
 
     const router = useRouter()
 
-    const { mutate } = useMutation({
+    const { mutate } = useMutation<
+        ApiResponse<UserLoginResponse>, 
+        Error, 
+        LoginFormValues
+    >({
         mutationFn: async (data: LoginFormValues) => {
-            return await api.post("/api/user/login", data)
+            const res = await api.post("/user/login", data)
+            return res.data
         },
-        onSuccess: () => {
+        onSuccess: (data) => {
+            setId(data.data.id)
             toast.success("Login Berhasil")
             router.push("/dashboard")
         },

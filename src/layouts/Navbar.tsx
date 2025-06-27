@@ -1,8 +1,19 @@
+"use client";
 import Button from "@/components/Button";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
+    // const { data } = useQuery({
+    //     queryKey: ["me"],
+    //     queryFn: async () => {
+    //         const res = await api.get("/api/user/me")
+    //         console.log(res.data);
+    //         return res.data;
+    //     },
+    //     refetchOnWindowFocus: false,
+    // })
+
     return (
         <header className="sticky top-0 flex items-center justify-between bg-primary rounded-[8px] px-[20px] md:px-[30px] py-[16px] md:py-[24px] mx-[10px] md:mx-[32px] my-3 md:my-5 text-dark z-[9999]">
             <div className="flex items-center md:gap-24">
@@ -26,7 +37,7 @@ export default function Navbar() {
                         </li>
                         <li>
                             <Link
-                                href="/"
+                                href="#about-us"
                             >
                                 About Us
                             </Link>
