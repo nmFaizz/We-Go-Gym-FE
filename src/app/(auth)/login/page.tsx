@@ -36,7 +36,9 @@ export default function LoginPage() {
         LoginFormValues
     >({
         mutationFn: async (data: LoginFormValues) => {
-            const res = await api.post("/user/login", data)
+            const res = await api.post("/user/login", data, {
+                baseURL: process.env.NEXT_PUBLIC_API_URL,
+            })
             return res.data
         },
         onSuccess: (data) => {

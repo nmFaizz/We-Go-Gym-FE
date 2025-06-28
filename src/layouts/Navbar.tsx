@@ -1,22 +1,15 @@
 "use client";
 import Button from "@/components/Button";
+import useUserQuery from "@/hooks/useUserQuery";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
-    // const { data } = useQuery({
-    //     queryKey: ["me"],
-    //     queryFn: async () => {
-    //         const res = await api.get("/api/user/me")
-    //         console.log(res.data);
-    //         return res.data;
-    //     },
-    //     refetchOnWindowFocus: false,
-    // })
+    const { data: user } = useUserQuery();
 
     return (
         <header className="sticky top-0 flex items-center justify-between bg-primary rounded-[8px] px-[20px] md:px-[30px] py-[16px] md:py-[24px] mx-[10px] md:mx-[32px] my-3 md:my-5 text-dark z-[9999]">
-            <div className="flex items-center md:gap-24">
+            <div className="flex items-center gap-4 lg:gap-24">
                 <figure>
                     <Image 
                         src="/logo.png"
@@ -27,7 +20,7 @@ export default function Navbar() {
                 </figure>
 
                 <nav>
-                    <ul className="hidden md:flex items-center gap-5 md:gap-16 font-semibold md:text-2xl">
+                    <ul className="hidden md:flex items-center gap-5 lg:gap-16 font-semibold md:text-2xl">
                         <li>
                             <Link
                                 href="/"
@@ -44,7 +37,7 @@ export default function Navbar() {
                         </li>
                         <li>
                             <Link
-                                href="/"
+                                href="#review"
                             >
                                 Review
                             </Link>
@@ -53,12 +46,20 @@ export default function Navbar() {
                 </nav>
 
             </div>
-
-            <Link href="/login">
-                <Button variant="dark">
-                    Login 
-                </Button>
-            </Link>
+        
+            {!user ? (
+                <Link href="/login">
+                    <Button variant="dark">
+                        Login 
+                    </Button>
+                </Link>
+            ) : (
+                <Link href="/dashboard">
+                    <Button variant="dark">
+                        Dashboard
+                    </Button>
+                </Link>
+            )}
         </header>
     )    
 }

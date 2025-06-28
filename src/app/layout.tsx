@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
+import Head from "next/head";
+import Script from "next/script";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -34,6 +36,11 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${mont.variable} antialiased bg-dark text-light`}
       >
+        <Script
+          src="https://app.sandbox.midtrans.com/snap/snap.js"
+          data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
+          strategy="afterInteractive"
+        />
         <ReactQueryProvider>
           <Toaster />
           {children}

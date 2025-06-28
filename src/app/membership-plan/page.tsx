@@ -1,45 +1,40 @@
 "use client";
-
-import UserProfile from "@/components/UserProfile";
-import MainLayout from "@/layouts/MainLayout";
-import MembershipPlanCard from "./components/membership-plan-card";
-import { useGetMembershipPlan } from "./hooks/useGetMembershipPlan";
-import Link from "next/link";
-import { HomeIcon } from "lucide-react";
+import MembershipPlanCard from "@/app/membership-plan/components/membership-plan-card";
+import { useGetMembershipPlan } from "@/app/membership-plan/hooks/useGetMembershipPlan";
+import useUserQuery from "@/hooks/useUserQuery";
+import DashboardLayout from "@/app/(private)/layouts/DashboardLayout";
+import Image from "next/image";
 
 function MembershipPlan() {
   const { data: memberPlans } = useGetMembershipPlan();
+  const { data: user } = useUserQuery();
 
   return (
-    <MainLayout 
-      withNavbar={false} 
-      containerSize="full" 
-      withMarginY={false}
-    >
-      <div className='bg-[url("/assets/bg-membership-plan.png")] min-h-screen bg-cover bg-center px-10 font-poppins'>
-        <div className="w-full flex justify-between items-center mb-12">
-            <Link href="/">
-                <HomeIcon size={40} className="text-primary" />
-            </Link>
-
-            <UserProfile />
-        </div>
-        <h1 className="text-5xl text-primary text-center font-bold uppercase">
+    <DashboardLayout widthSize="full">
+      <Image 
+        src="/assets/bg-membership-plan.png"
+        alt="Membership Plan Background"
+        fill
+        className="absolute z-[-1] top-0 lef-0 object-cover opacity-50"
+      />
+      <div className='min-h-screen bg-cover bg-center px-10 font-poppins'>
+        <h1 className="text-3xl md:text-5xl text-primary text-center font-bold uppercase">
           Choose Your Membership
         </h1>
-        <div className="flex flex-wrap mt-10 px-10 gap-10 justify-center">
-          {memberPlans?.map((member) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 mt-10 gap-10 justify-center">
+          {memberPlans?.data?.map((member) => (
             <MembershipPlanCard
               key={member.id}
               id={member.id}
               type={member.type}
               duration={member.duration}
               price={member.price}
+              user_id={user?.data.id}
             />
           ))}
         </div>
       </div>
-    </MainLayout>
+    </DashboardLayout>
   );
 }
 

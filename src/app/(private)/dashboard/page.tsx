@@ -1,24 +1,25 @@
 "use client";
 import Button from "@/components/Button";
-import MainLayout from "@/layouts/MainLayout";
-import { History, HomeIcon } from "lucide-react";
+import { History } from "lucide-react";
 import Image from "next/image";
 import TrainerList from "@/app/(private)/dashboard/components/TrainerList";
-import UserProfile from "@/components/UserProfile";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import useUserQuery from "@/hooks/useUserQuery";
+import DashboardLayout from "@/app/(private)/layouts/DashboardLayout";
+import withAuth from "@/components/hoc/withAuth";
 
-export default function DashboardPage() {
+function DashboardPage() {
     const { data: qrImg } = useQuery<string>({
         queryKey: ["qr-code"],
         queryFn: async () => {
             const res = await api.get("/user/generate-qr", {
-            responseType: "blob",
+                responseType: "blob",
+                baseURL: process.env.NEXT_PUBLIC_API_URL,
             });
 
-            return URL.createObjectURL(res.data); // ← Convert blob ke URL untuk <img>
+            return URL.createObjectURL(res.data);
         },
         refetchOnWindowFocus: false,
     });
@@ -26,19 +27,7 @@ export default function DashboardPage() {
     const { data: user } = useUserQuery();
 
     return (
-        <MainLayout 
-            withNavbar={false} 
-            containerSize="1200" 
-            withMarginY
-            className="relative"
-        >
-            <div className="w-full flex justify-between items-center mb-12">
-                <Link href="/">
-                    <HomeIcon size={40} className="text-primary" />
-                </Link>
-
-                <UserProfile username={user?.data.username} />
-            </div>
+        <DashboardLayout>
             <div>
                 <Link href="/history">
                     <Button 
@@ -119,6 +108,8 @@ export default function DashboardPage() {
 
             <div className="absolute top-10 right-0 w-[300px] h-[300px] bg-primary blur-[150px] opacity-70 rounded-full z-20 pointer-events-none" />
             <div className="absolute bottom-0 left-[-120px] w-[300px] h-[300px] bg-primary blur-[150px] opacity-70 rounded-full z-20 pointer-events-none" />
-        </MainLayout>
+        </DashboardLayout>
     );
 }
+
+export default withAuth(DashboardPage);

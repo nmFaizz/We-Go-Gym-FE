@@ -2,6 +2,9 @@ import MainLayout from "@/layouts/MainLayout";
 import Button from "@/components/Button";
 import Image from "next/image";
 import Link from "next/link";
+import { userReviews } from "./constants/userReviews";
+import UserProfile from "@/components/UserProfile";
+import { Star } from "lucide-react";
 
 export default function Home() {
   return (
@@ -24,23 +27,17 @@ export default function Home() {
           </Link>
         </div>
 
-        <div>
+        <div className="md:mt-0 mt-[-120px] z-[-1]">
           <Image 
             src="/assets/woman-boxer.png"
             alt="Hero Image"
             width={525.96}
             height={971}
-            className=""
           />
         </div>
 
-        <div className="absolute top-0 right-1/5 bg-primary blur-[150px] z-[-1] w-[200px] h-[200px]">
-
-        </div>
-
-        <div className="absolute left-0 bottom-0 bg-primary blur-[150px] z-[-1] w-[200px] h-[200px]">
-
-        </div>
+        <div className="absolute top-0 right-1/5 bg-primary blur-[100px] md:blur-[150px] z-[-1] w-[100px] h-[100px] md:w-[200px] md:h-[200px]"></div>
+        <div className="absolute left-0 bottom-0 bg-primary blur-[100px] md:blur-[150px] z-[-1] w-[100px] h-[100px] md:w-[200px] md:h-[200px]"></div>
       </section>
 
       <section id="about-us" className="relative bg-primary z-10 text-dark rounded-xl md:rounded-[100px] py-16 md:py-32"> 
@@ -54,6 +51,49 @@ export default function Home() {
           <p className="mt-12 md:text-2xl">
             Bergabunglah bersama kami, dan rasakan sendiri perbedaan yang bisa dibuat oleh komunitas yang mendukung dan lingkungan yang inspiratif.
           </p>
+        </div>
+      </section>
+
+      <section id="review" className="center-xl py-16 md:py-24">
+        <h1 className="text-3xl md:text-5xl font-bold text-primary mb-6">
+          Reviews
+        </h1>
+
+        <div className="relative">
+          {/* <Image 
+            src="/assets/male-gym.png"
+            width={899}
+            height={1350}
+            alt="gymbro"
+            className="absolute left-0"
+          /> */}
+
+          {/* <Image 
+            src="/assets/fem-gym.png"
+            width={899}
+            height={1350}
+            alt="gymsis"
+            className=""
+          /> */}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 p-8 gap-12 rounded-xl">
+            {userReviews.map((data, index) => (
+              <div 
+                key={index}
+                className="bg-black/25 backdrop-blur-[27px]"
+              >
+                <UserProfile username={data.name} />
+
+                <p>{data.review}</p>
+                
+                <div className="flex gap-3 justify-center mt-5">
+                  {new Array(data.rating).fill(0).map((_, i) => (
+                    <Star className="text-primary" key={i} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </MainLayout>

@@ -41,7 +41,7 @@ export default function RegisterPage() {
 
     const { mutate } = useMutation({
         mutationFn: async (data: RegisterFormValue) => {
-            return await api.post("/api/user/register", data)
+            return await api.post("/user/register", data)
         },
         onSuccess: () => {
             toast.success("Registration successful")

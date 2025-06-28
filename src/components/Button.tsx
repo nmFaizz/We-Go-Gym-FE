@@ -46,7 +46,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           'focus-visible:ring-primary-500 focus:outline-none focus-visible:ring',
           'shadow-sm',
           'transition-colors duration-75',
-          'px-[29px] py-1.5 h-[46px]', 
+          'px-[16px] md:px-[29px] py-1.5 h-[46px]', 
           'text-sm md:text-2xl',
           'cursor-pointer',
           [
