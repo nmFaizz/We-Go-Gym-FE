@@ -28,7 +28,7 @@ export const usePayment = () => {
     onSuccess: (token) => {
       processPayment(token);
     },
-    onError: (error: any) => {
+    onError: (error) => {
       toast.error(error.message || 'Payment failed');
     }
   });

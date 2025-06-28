@@ -4,7 +4,6 @@ import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
-import Head from "next/head";
 import Script from "next/script";
 
 const poppins = Poppins({

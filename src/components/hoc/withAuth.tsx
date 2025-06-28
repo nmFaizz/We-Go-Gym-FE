@@ -3,11 +3,7 @@ import { ComponentType, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import useUserQuery from '@/hooks/useUserQuery';
 
-interface WithAuthProps {
-  [key: string]: any;
-}
-
-function withAuth<P extends WithAuthProps>(WrappedComponent: ComponentType<P>) {
+function withAuth<P extends Record<string, unknown>>(WrappedComponent: ComponentType<P>) {
   const AuthenticatedComponent = (props: P) => {
     const router = useRouter();
     const { data, isLoading, isError } = useUserQuery();
