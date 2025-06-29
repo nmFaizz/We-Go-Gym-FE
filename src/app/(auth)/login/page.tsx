@@ -11,7 +11,7 @@ import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import api from "@/lib/api"
 import { setId } from "@/lib/cookie"
-import { ApiResponse } from "@/types/api"
+import { ApiError, ApiResponse } from "@/types/api"
 import { UserLoginResponse } from "@/lib/auth"
 
 type LoginFormValues = {
@@ -32,7 +32,7 @@ export default function LoginPage() {
 
     const { mutate } = useMutation<
         ApiResponse<UserLoginResponse>, 
-        Error, 
+        ApiError, 
         LoginFormValues
     >({
         mutationFn: async (data: LoginFormValues) => {

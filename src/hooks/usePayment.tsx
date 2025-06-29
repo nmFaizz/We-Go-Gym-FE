@@ -1,5 +1,5 @@
 import api from "@/lib/api";
-import { ApiResponse } from "@/types/api";
+import { ApiError, ApiResponse } from "@/types/api";
 import { MembershipPayment, MembershipPaymentResponse } from "@/types/transaction";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 export const usePayment = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { mutate } = useMutation({
+  const { mutate } = useMutation<string, ApiError, MembershipPayment>({
     mutationFn: async (paymentData: MembershipPayment) => {
       const response = await api.post<ApiResponse<MembershipPaymentResponse>>(
         '/transaction/', 

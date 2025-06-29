@@ -11,6 +11,7 @@ import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { ApiError, ApiResponse } from "@/types/api"
 
 type RegisterFormValue = {
     username: string
@@ -39,7 +40,7 @@ export default function RegisterPage() {
 
     const router = useRouter()
 
-    const { mutate } = useMutation({
+    const { mutate } = useMutation<void, ApiError, RegisterFormValue>({
         mutationFn: async (data: RegisterFormValue) => {
             return await api.post("/user/register", data)
         },
