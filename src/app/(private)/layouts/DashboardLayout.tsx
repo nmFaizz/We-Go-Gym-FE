@@ -43,12 +43,12 @@ export default function DashboardLayout({
             await api.post("/user/logout")
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["user"] })
-            closeMobileMenu()
+            queryClient.clear()
             removeId()
+            closeMobileMenu()
             toast.success("Logged out successfully!")
-            router.refresh()
-            router.replace("/")
+            router.replace("/") 
+            router.refresh() 
         },
         onError: (error) => {
             toast.error(error.response?.data.message || "Failed to log out")
