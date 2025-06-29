@@ -76,7 +76,7 @@ export default function DashboardLayout({
 
                 {/* Mobile Menu Button */}
 
-                {isAdmin && (
+                {!isAdmin && (
                     <button
                         onClick={toggleMobileMenu}
                         className="md:hidden p-2 text-primary hover:text-secondary transition-colors"
@@ -108,7 +108,7 @@ export default function DashboardLayout({
                 {/* Mobile Navigation Menu */}
                 {isMobileMenuOpen && (
                     <>
-                        {isAdmin && ( 
+                        {!isAdmin && ( 
                             <>             
                                 <div 
                                     className="fixed inset-0 bg-black/50 z-40 md:hidden"
