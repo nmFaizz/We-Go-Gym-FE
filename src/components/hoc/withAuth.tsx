@@ -1,17 +1,24 @@
 import { ComponentType, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import useUserQuery from '@/hooks/useUserQuery';
+import toast from 'react-hot-toast';
 
-function withAuth<P extends object>(WrappedComponent: ComponentType<P>) {
+type Role = 'admin' | 'member';
+
+function withAuth<P extends object>(WrappedComponent: ComponentType<P>, role?: Role): React.FC<P> {
   const AuthenticatedComponent: React.FC<P> = (props: P) => {
     const router = useRouter();
     const { data, isLoading, isError } = useUserQuery();
 
     useEffect(() => {
       if (!isLoading && (!data?.data || isError)) {
+        toast.error('You must be logged in to access this page.');
+        router.push('/login');
+      } else if (role && data?.data && data.data.role !== role) {
+        toast.error('You do not have permission to access this page.');
         router.push('/');
       }
-    }, [data, isLoading, isError, router]);
+    }, [data, isLoading, isError]);
 
     if (isLoading) {
       return (

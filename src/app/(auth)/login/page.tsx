@@ -44,6 +44,10 @@ export default function LoginPage() {
         onSuccess: (data) => {
             setId(data.data.id)
             toast.success("Login Berhasil")
+            if (data.data.role === "admin") {
+                router.push("/admin/entry")
+                return;
+            } 
             router.push("/dashboard")
         },
         onError: (error) => {

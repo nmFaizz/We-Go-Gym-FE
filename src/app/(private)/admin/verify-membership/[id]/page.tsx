@@ -54,4 +54,4 @@ function VerifyMembershipPage() {
     );
 }
 
-export default withAuth(VerifyMembershipPage)
+export default withAuth(VerifyMembershipPage, "admin")
