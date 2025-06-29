@@ -11,7 +11,7 @@ import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { ApiError, ApiResponse } from "@/types/api"
+import { ApiError } from "@/types/api"
 
 type RegisterFormValue = {
     username: string
