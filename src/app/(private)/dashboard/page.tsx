@@ -69,7 +69,9 @@ function DashboardPage() {
                         {user?.data.user_membership.id ? (
                             <div>
                                 <p className="text-2xl text-end">Available Until:</p>
-                                <h1 className="text-4xl text-end font-bold">11-11-2025 [23:59]</h1>
+                                <h1 className="text-4xl text-end font-bold">
+                                    {new Date(user.data.user_membership.expired).toLocaleString()}
+                                </h1>
                             </div>
                         ) : (
                             <div className="bg-dark text-primary rounded-lg p-5 text-center">

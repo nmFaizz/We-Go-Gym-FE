@@ -8,7 +8,7 @@ export default function Navbar() {
     const { data: user } = useUserQuery();
 
     return (
-        <header className="sticky top-0 flex items-center justify-between bg-primary rounded-[8px] px-[20px] md:px-[30px] py-[16px] md:py-[24px] mx-[10px] md:mx-[32px] my-3 md:my-5 text-dark z-[9999]">
+        <header className="flex items-center justify-between bg-primary rounded-[8px] px-[20px] md:px-[30px] py-[16px] md:py-[24px] mx-[10px] md:mx-[32px] my-3 md:my-5 text-dark">
             <div className="flex items-center gap-4 lg:gap-24">
                 <figure>
                     <Image 
@@ -47,7 +47,7 @@ export default function Navbar() {
 
             </div>
         
-            {!user ? (
+            {!user?.data.id ? (
                 <Link href="/login">
                     <Button variant="dark">
                         Login 

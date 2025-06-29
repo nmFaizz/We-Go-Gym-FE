@@ -5,7 +5,13 @@ export type ApiResponse<T> = {
 }
 
 export type ApiError = {
-    success: boolean;
+    status: number;
     message: string;
-    error: string;
+    response?: {
+        data: {
+            error: string;
+            message: string;
+            succes: boolean;
+        }
+    };
 }

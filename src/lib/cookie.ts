@@ -1,7 +1,7 @@
 const storage_name = "id";
 
-export const getId = (): string => {
-	return localStorage.getItem(storage_name) || ""
+export const getId = (): string | null => {
+	return localStorage.getItem(storage_name) 
 }
 
 export const setId = (id: string) => {

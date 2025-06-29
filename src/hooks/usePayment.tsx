@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 export const usePayment = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { mutate } = useMutation<string, ApiError, MembershipPayment>({
+  const { mutate } = useMutation<{ token: string, membership_id: string }, ApiError, MembershipPayment>({
     mutationFn: async (paymentData: MembershipPayment) => {
       const response = await api.post<ApiResponse<MembershipPaymentResponse>>(
         '/transaction/', 
@@ -16,15 +16,19 @@ export const usePayment = () => {
       );
       
       const { token } = response.data.data;
-      return token;
+      return {
+        token,
+        membership_id: paymentData.membership_id,
+      };
     },
     onSettled: () => setIsLoading(false),
     onMutate: () => setIsLoading(true),
-    onSuccess: (token) => {
-      processPayment(token);
+    onSuccess: (data) => {
+      processPayment(data.token, data.membership_id);
     },
     onError: (error) => {
-      toast.error(error.message || 'Payment failed');
+      const errorMessage = error.response?.data?.message || 'Payment failed';
+      toast.error(errorMessage || 'Payment failed');
     }
   });
 
@@ -32,9 +36,9 @@ export const usePayment = () => {
     mutate(paymentData);
   };
 
-  const processPayment = (token: string) => {
+  const processPayment = (token: string, membership_id: string) => {
     if (typeof window === 'undefined') {
-      console.error('Not in browser environment');
+      toast.error('Not in browser environment');
       return;
     }
 
@@ -46,9 +50,19 @@ export const usePayment = () => {
 
     try {
       window.snap.pay(token, {
-        onSuccess: (result) => {
+        onSuccess: async (result) => {
           console.log('Payment success:', result);
-          toast.success('Payment successful!');
+          const res = await api.post('/user-membership/new-membership', {
+            user_id: result.order_id,
+            membership_id: membership_id,
+          })
+          
+          if (res.status !== 200) {
+            toast.error('Failed to activate membership');
+            throw new Error('Failed to activate membership');
+          }
+
+          toast.success('Membership activated!');
         },
         onPending: (result) => {
           console.log('Payment pending:', result);
