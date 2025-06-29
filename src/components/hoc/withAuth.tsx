@@ -1,4 +1,3 @@
-"use client";
 import { ComponentType, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import useUserQuery from '@/hooks/useUserQuery';
@@ -34,7 +33,7 @@ function withAuth<P extends Record<string, unknown>>(WrappedComponent: Component
 
   AuthenticatedComponent.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name})`;
 
-  return AuthenticatedComponent;
+  return AuthenticatedComponent as ComponentType<P>;
 }
 
 export default withAuth;
