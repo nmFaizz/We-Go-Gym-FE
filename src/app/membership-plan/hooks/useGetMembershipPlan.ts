@@ -13,10 +13,7 @@ export const useGetMembershipPlan = () => {
   const { data, isLoading } = useQuery<ApiResponse<GetMembership[]>>({
     queryKey: ["membershipPlan"],
     queryFn: async () => {
-      const response = await api.get("/membership/", {
-        baseURL: process.env.NEXT_PUBLIC_API_URL,
-        withCredentials: false,
-      });
+      const response = await api.get("/membership/");
 
       return response.data
     },

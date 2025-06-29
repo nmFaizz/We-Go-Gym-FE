@@ -13,14 +13,9 @@ export const usePayment = () => {
       const response = await api.post<ApiResponse<MembershipPaymentResponse>>(
         '/transaction/', 
         paymentData, 
-        {
-          baseURL: process.env.NEXT_PUBLIC_API_URL,
-          withCredentials: true,
-        }
       );
       
       const { token } = response.data.data;
-      console.log('Payment token:', token);
       return token;
     },
     onSettled: () => setIsLoading(false),

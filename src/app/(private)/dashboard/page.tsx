@@ -16,7 +16,6 @@ function DashboardPage() {
         queryFn: async () => {
             const res = await api.get("/user/generate-qr", {
                 responseType: "blob",
-                baseURL: process.env.NEXT_PUBLIC_API_URL,
             });
 
             return URL.createObjectURL(res.data);

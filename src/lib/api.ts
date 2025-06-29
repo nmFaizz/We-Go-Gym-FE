@@ -1,11 +1,9 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
-const isProd = process.env.NODE_ENV === 'production';
+// const isProd = process.env.NODE_ENV === 'production';
 
 const api = axios.create({
-  baseURL: isProd 
-    ? process.env.NEXT_PUBLIC_API_URL 
-    : '/api',                          
+  baseURL: process.env.NEXT_PUBLIC_API_URL,                          
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
