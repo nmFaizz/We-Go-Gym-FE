@@ -47,8 +47,8 @@ export default function DashboardLayout({
             closeMobileMenu()
             removeId()
             toast.success("Logged out successfully!")
-            router.replace("/")
             router.refresh()
+            router.replace("/")
         },
         onError: (error) => {
             toast.error(error.response?.data.message || "Failed to log out")
