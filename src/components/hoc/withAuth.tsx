@@ -2,8 +2,8 @@ import { ComponentType, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import useUserQuery from '@/hooks/useUserQuery';
 
-function withAuth<P extends Record<string, unknown>>(WrappedComponent: ComponentType<P>) {
-  const AuthenticatedComponent = (props: P) => {
+function withAuth<P extends object>(WrappedComponent: ComponentType<P>) {
+  const AuthenticatedComponent: React.FC<P> = (props: P) => {
     const router = useRouter();
     const { data, isLoading, isError } = useUserQuery();
 
@@ -33,7 +33,7 @@ function withAuth<P extends Record<string, unknown>>(WrappedComponent: Component
 
   AuthenticatedComponent.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name})`;
 
-  return AuthenticatedComponent as ComponentType<P>;
+  return AuthenticatedComponent
 }
 
 export default withAuth;
