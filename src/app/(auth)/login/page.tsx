@@ -30,7 +30,7 @@ export default function LoginPage() {
 
     const router = useRouter()
 
-    const { mutate } = useMutation<
+    const { mutate, isPending } = useMutation<
         ApiResponse<UserLoginResponse>, 
         ApiError, 
         LoginFormValues
@@ -51,7 +51,7 @@ export default function LoginPage() {
             router.push("/dashboard")
         },
         onError: (error) => {
-            toast.error(error.message)
+            toast.error(error.response?.data.message || "Login Gagal")
         }
     })
 
@@ -99,6 +99,7 @@ export default function LoginPage() {
                             <Button 
                                 type="submit"
                                 className="w-full flex justify-center mt-12"
+                                isLoading={isPending}
                             >
                                 Masuk
                             </Button>

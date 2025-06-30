@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation"
 import { removeId } from "@/lib/cookie"
 import { ApiError } from "@/types/api"
 import { queryClient } from "@/providers/ReactQueryProvider"
+import Button from "@/components/Button"
 
 type DashboardLayoutProps = {
     widthSize?: "1200" | "720" | "full"
@@ -38,7 +39,7 @@ export default function DashboardLayout({
 
     const router = useRouter()
 
-    const { mutate: logout } = useMutation<void, ApiError>({
+    const { mutate: logout, isPending } = useMutation<void, ApiError>({
         mutationFn: async () => {
             await api.post("/user/logout")
         },
@@ -77,7 +78,8 @@ export default function DashboardLayout({
                 {/* Mobile Menu Button */}
 
                 {!isAdmin && (
-                    <button
+                    <Button
+                        variant="ghost"
                         onClick={toggleMobileMenu}
                         className="md:hidden p-2 text-primary hover:text-secondary transition-colors"
                         aria-label="Toggle mobile menu"
@@ -87,7 +89,7 @@ export default function DashboardLayout({
                         ) : (
                             <Menu size={24} />
                         )}
-                    </button>
+                    </Button>
                 )}
 
                 {/* User Profile */}
@@ -97,12 +99,14 @@ export default function DashboardLayout({
                         username={user?.data.username}
                     />
 
-                    <button
+                    <Button
                         onClick={() => logout()}
                         className="text-primary cursor-pointer"
+                        variant="ghost"
+                        isLoading={isPending}
                     >
                         <LogOut size={22} />
-                    </button>
+                    </Button>
                 </div>
 
                 {/* Mobile Navigation Menu */}
@@ -131,13 +135,14 @@ export default function DashboardLayout({
                                                 </li>
                                             ))}
                                             <li>
-                                                <button
+                                                <Button
+                                                    variant="ghost"
                                                     onClick={() => logout()}
                                                     className="flex items-center gap-3 text-lg font-semibold text-primary hover:text-secondary transition-colors py-2 px-3 rounded-md hover:bg-gray-800/50 w-full text-left"
                                                 >
                                                     <LogOut size={22} />
                                                     Logout
-                                                </button>
+                                                </Button>
                                             </li>
                                         </ul>
                                     </nav>

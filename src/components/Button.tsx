@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
-type ButtonVariant = 'primary' | 'dark' | 'danger' | 'outline';
+type ButtonVariant = 'primary' | 'dark' | 'danger' | 'outline' | 'ghost';
 type ButtonSize = 'sm' | 'base';
 
 type ButtonProps = {
@@ -69,7 +69,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 'bg-transparent text-primary',
                 'border border-primary',
                 'hover:bg-primary/50 hover:text-white',
-              ]
+              ],
+              variant === 'ghost' && [
+                'bg-transparent text-primary',
+                'hover:bg-primary/50 hover:text-white',
+              ],
           ],
           //#endregion  //*======== Variants ===========
           'disabled:cursor-not-allowed',

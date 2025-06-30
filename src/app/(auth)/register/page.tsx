@@ -40,7 +40,7 @@ export default function RegisterPage() {
 
     const router = useRouter()
 
-    const { mutate } = useMutation<void, ApiError, RegisterFormValue>({
+    const { mutate, isPending } = useMutation<void, ApiError, RegisterFormValue>({
         mutationFn: async (data: RegisterFormValue) => {
             return await api.post("/user/register", data)
         },
@@ -49,7 +49,7 @@ export default function RegisterPage() {
             router.push("/login")
         },
         onError: (error) => {
-            toast.error(error.message)
+            toast.error(error.response?.data.message || "Registration failed")
         }
     })
 
@@ -168,6 +168,7 @@ export default function RegisterPage() {
                             <Button 
                                 type="submit"
                                 className="w-full mt-12 flex items-center justify-center"
+                                isLoading={isPending}
                             >
                                 Daftar
                             </Button>

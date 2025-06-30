@@ -23,9 +23,11 @@ export default function HistoryPage() {
 
     return (
         <DashboardLayout>
-            <h1 className="text-primary text-3xl md:text-4xl font-bold">History</h1>
+            <h1 className="text-primary text-3xl md:text-4xl font-bold">
+                History
+            </h1>
             
-            {history?.data?.map((entry, i) => (
+            {history?.data?.slice().reverse().map((entry, i) => (
                 <div key={i} className="bg-primary w-full rounded-lg text-dark p-6 md:p-8 space-y-5 mt-8">
                     <h4 className="text-2xl font-semibold">
                         {entry.username}

@@ -7,6 +7,7 @@ import { ApiResponse } from "@/types/api";
 import { User } from "@/types/user";
 import { useQuery } from "@tanstack/react-query";
 import { Check, CircleX } from "lucide-react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 
 function VerifyMembershipPage() {
@@ -43,9 +44,12 @@ function VerifyMembershipPage() {
                                 Not Verified
                             </h3>
                             <p className="text-dark">Visitor: {verify?.data.username}</p>
-                            <Button variant="dark" className="mt-12">
-                                Return
-                            </Button>
+
+                            <Link href="/admin/entry">
+                                <Button variant="dark" className="mt-12">
+                                    Return
+                                </Button>
+                            </Link>
                         </>
                     )}
                 </div>
