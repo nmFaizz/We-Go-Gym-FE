@@ -44,7 +44,6 @@ function MembershipPlanCard({
       <h4 className="text-white italic text-xl font-thin border-b px-5 pb-3">
         Membership {duration} Hari{" "}
       </h4>
-      <h4 className="text-white text-xl">Pilihan Tepat Untuk Pemula</h4>
       <p className="mt-6">
         Paket Silver dari We Go Gym dirancang khusus untuk Anda yang baru
         memulai perjalanan kebugaran. Dengan fasilitas dan pendampingan yang
