@@ -44,12 +44,6 @@ function MembershipPlanCard({
       <h4 className="text-white italic text-xl font-thin border-b px-5 pb-3">
         Membership {duration} Hari{" "}
       </h4>
-      <p className="mt-6">
-        Paket Silver dari We Go Gym dirancang khusus untuk Anda yang baru
-        memulai perjalanan kebugaran. Dengan fasilitas dan pendampingan yang
-        tepat, paket ini memberikan fondasi yang kuat untuk membangun gaya hidup
-        sehat secara bertahap dan efektif.
-      </p>
 
       <Button onClick={() => {
         createPayment({
