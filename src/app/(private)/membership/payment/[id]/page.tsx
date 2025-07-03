@@ -87,6 +87,7 @@ export default function MembershipPaymentPage() {
                         <Button 
                             type="submit" 
                             className="mt-8"
+                            isLoading={isLoading}
                         >
                             Continue Payment
                         </Button>

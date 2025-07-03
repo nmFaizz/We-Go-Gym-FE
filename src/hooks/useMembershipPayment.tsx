@@ -87,8 +87,9 @@ export const useMembershipPayment = () => {
           toast.dismiss(); 
         }
       });
-    } catch (error) {
+    } catch (e) {
       toast.error('Failed to open payment gateway');
+      console.error('Payment gateway error:', e);
     }
   }
 

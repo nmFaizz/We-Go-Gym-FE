@@ -86,6 +86,7 @@ export const useTrainerPayment = () => {
       });
     } catch (error) {
       toast.error('Failed to open payment gateway');
+      console.error('Payment processing error:', error);
     }
   }
 
