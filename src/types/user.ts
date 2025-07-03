@@ -7,4 +7,5 @@ export type User = {
         id: string;
         expired: string;
     }
+    sesi: number;
 }

@@ -54,10 +54,10 @@ function DashboardPage() {
                     <figure className="relative w-[200px] h-[200px] md:w-[296px] md:h-[296px] bg-dark my-12">
                         {qrImg && (
                             <Image 
-                            src={qrImg}
-                            alt="Membership QR Code"
-                            fill
-                            unoptimized
+                                src={qrImg}
+                                alt="Membership QR Code"
+                                fill
+                                unoptimized
                             />
                         )}
                     </figure>
@@ -65,13 +65,20 @@ function DashboardPage() {
                     <div className="w-full border border-dark my-5"></div>
 
                     <div className="w-full flex justify-end">
-
                         {user?.data.user_membership.id ? (
-                            <div>
+                            <div className="flex flex-col items-end">
                                 <p className="text-2xl text-end">Available Until:</p>
                                 <h1 className="text-4xl text-end font-bold">
                                     {new Date(user.data.user_membership.expired).toLocaleString()}
                                 </h1>
+                                
+                                {user.data.sesi > 0 && (
+                                    <div className="bg-dark text-primary rounded-lg p-3 w-max text-center mt-3">
+                                        <p className="font-semibold">
+                                            With Personal Trainer {user.data.sesi}x
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         ) : (
                             <div className="bg-dark text-primary rounded-lg p-5 text-center">

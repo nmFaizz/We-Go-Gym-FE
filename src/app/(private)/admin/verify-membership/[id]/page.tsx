@@ -31,7 +31,9 @@ function VerifyMembershipPage() {
                     {verify?.success ? (
                         <>
                             <Check size={60} className="text-green-400" />
-                            <h3>Verified!</h3>
+                            <h3 className="text-2xl text-dark">
+                                Verified!
+                            </h3>
                             <p className="text-dark">Visitor: {verify.data.username}</p>
                             <Button variant="dark" className="mt-12">
                                 Return

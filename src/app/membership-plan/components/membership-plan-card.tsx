@@ -1,14 +1,13 @@
 "use client"
 
 import Button from "@/components/Button";
-import { usePayment } from "@/hooks/usePayment";
+import Link from "next/link";
 
 type MembershipPlanCardProps = {
   id: string;
   type: string;
   duration: number;
   price: number;
-  user_id?: string;
 };
 
 function MembershipPlanCard({
@@ -16,10 +15,7 @@ function MembershipPlanCard({
   type,
   duration,
   price,
-  user_id
 }: MembershipPlanCardProps) {
-  const { createPayment } = usePayment();
-
   function formatPrice(price: number) {
     return price >= 1000
       ? (price / 1000).toFixed(1).replace(/\.0$/, "") + "k"
@@ -45,14 +41,12 @@ function MembershipPlanCard({
         Membership {duration} Hari{" "}
       </h4>
 
-      <Button onClick={() => {
-        createPayment({
-          membership_id: id,
-          user_id: user_id,
-        })
-      }}>
-        Pilih Membership
-      </Button>
+
+      <Link href={`/membership/payment/${id}`}>
+        <Button>
+          Pilih Membership
+        </Button>
+      </Link>
     </div>
   );
 }

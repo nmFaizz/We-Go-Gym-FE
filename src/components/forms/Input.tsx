@@ -7,6 +7,7 @@ export type InputProps = {
 	label?: string
 	hideError?: boolean
 	validation?: RegisterOptions
+	labelClassName?: string
 } & React.ComponentPropsWithoutRef<"input">
 
 export default function Input({
@@ -17,6 +18,7 @@ export default function Input({
 	className,
 	type = "text",
 	readOnly = false,
+	labelClassName,
 	...rest
 }: InputProps) {
 	const {
@@ -33,7 +35,10 @@ export default function Input({
             {label && (
                 <label 
                     htmlFor={id}
-                    className="text-2xl text-primary"
+                    className={cn(
+						"text-2xl text-primary",
+						labelClassName,
+					)}
                 >
                     {label}
                 </label>
