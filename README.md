@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WeGoGym
 
-## Getting Started
+Final Project untuk mata kuliah Konstruksi dan Arsitektur Perangkat Lunak.
 
-First, run the development server:
+## Tim Pengembang 👥
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* **Made Satya Dhananjaya** - NRP : 5053231001
+* **Nuhito Atmoko** - NRP: 5053231002
+* **Nur Muhammad Faiz** - NRP: 5053231008
+* **Geraldo Benjamin Nainggolan** - NRP: 5053231014
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Dosen Pembimbing:** Rizky Januar Akbar, S.Kom., M.Eng
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Ringkasan Proyek 🏋️‍♀️
 
-## Learn More
+WeGoGym adalah sistem manajemen gym komprehensif yang dikembangkan menggunakan bahasa pemrograman Go. Aplikasi ini dirancang untuk menyederhanakan berbagai aspek operasional gym, mulai dari manajemen pengguna dan keanggotaan hingga pemrosesan transaksi dan pencatatan riwayat masuk.
 
-To learn more about Next.js, take a look at the following resources:
+## Fitur ✨
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Manajemen Pengguna:** Fasilitas lengkap untuk pendaftaran, login, logout, dan akses profil pengguna.
+* **Manajemen Keanggotaan yang Efisien:**
+    * **Admin-only:** Scanning verifikasi pengunjung via QR.
+    * **Pengguna:** Proses berlangganan keanggotaan dengan mudah.
+    * **Cek Status Keanggotaan:** Verifikasi status keanggotaan pengguna secara instan.
+* **Manajemen Sesi Personal Trainer (PT):**
+    * Tambahkan dan kelola sesi personal trainer untuk pengguna.
+* **Integrasi Pembayaran Midtrans:** Memproses transaksi keanggotaan dan sesi PT dengan mulus melalui Midtrans.
+* **Riwayat Masuk Gym:** Catat dan akses riwayat waktu masuk gym setiap pengguna.
+* **Generasi Kode QR:** Hasilkan kode QR unik untuk identifikasi pengguna yang cepat.
+* **Kontrol Akses Berbasis Peran (RBAC):** Memastikan fungsionalitas yang tepat diakses oleh peran `member` dan `admin`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Teknologi yang Digunakan 💻
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* **Next.js (TypeScript):** Framework React untuk pengembangan aplikasi web fullstack dengan dukungan server-side rendering dan API routes.
+* **React.js (TypeScript):** Library JavaScript untuk membangun antarmuka pengguna yang interaktif dan dinamis.
+* **TanStack Query (React Query):** Library untuk pengelolaan data fetching, caching, dan state asynchronous di React.
+* **react-hook-form:** Library ringan untuk mengelola form di React dengan performa tinggi dan validasi yang fleksibel.
+* **Axios:** Library HTTP client berbasis promise untuk melakukan request ke API secara efisien.
+* **Tailwind CSS:** Framework utility-first untuk styling UI dengan cepat dan konsisten melalui class-class siap pakai.
